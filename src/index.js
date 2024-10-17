@@ -1,41 +1,12 @@
-const path = require('path');
-const fs = require('fs');
-const { promisify } = require('util');
-const readFile = promisify(fs.readFile);
+import path from 'path';
+import { parsePDF } from './parsers/pdfParser.js';
+import { parseDOCX } from './parsers/docxParser.js';
+import { parseTXT } from './parsers/txtParser.js';
+import { parseHTML } from './parsers/htmlParser.js';
+import { parseMarkdown } from './parsers/markdownParser.js';
 
-async function loadPdfModule() {
-    const { default: parsePDF } = await import('./parsers/pdfParser.js');
-    return parsePDF;
-}
-
-async function parsePDF(filePath) {
-    const dataBuffer = await readFile(filePath);
-    const Pdf = await loadPdfModule();
-    return await Pdf(dataBuffer);
-}
-
-async function parseDOCX(filePath) {
-    const { parseDOCX } = await import('./parsers/docxParser.js');
-    const dataBuffer = await readFile(filePath);
-    return await parseDOCX(dataBuffer);
-}
-
-async function parseTXT(filePath) {
-    const { parseTXT } = await import('./parsers/txtParser.js');
-    return await parseTXT(filePath);
-}
-
-async function parseHTML(filePath) {
-    const { parseHTML } = await import('./parsers/htmlParser.js');
-    return await parseHTML(filePath);
-}
-
-async function parseMarkdown(filePath) {
-    const { parseMarkdown } = await import('./parsers/parseMarkdown.js');
-    return await parseMarkdown(filePath);
-}
-
-async function parseFile(filePath) {
+// Unified function to handle text extraction based on file extension
+export async function autoParse(filePath) {
     const ext = path.extname(filePath).toLowerCase();
 
     switch (ext) {
@@ -46,12 +17,17 @@ async function parseFile(filePath) {
         case '.txt':
             return await parseTXT(filePath);
         case '.md':
-                return await parseMarkdown(filePath);
+            return await parseMarkdown(filePath);
         case '.html':
-                return await parseHTML(filePath);        
+            return await parseHTML(filePath);        
         default:
             throw new Error(`Unsupported file format: ${ext}`);
     }
 }
 
-module.exports = parseFile;
+// Export individual parsers as well
+export { parsePDF } from './parsers/pdfParser.js';
+export { parseDOCX } from './parsers/docxParser.js';
+export { parseTXT } from './parsers/txtParser.js';
+export { parseHTML } from './parsers/htmlParser.js';
+export { parseMarkdown } from './parsers/markdownParser.js';
