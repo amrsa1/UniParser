@@ -1,12 +1,14 @@
 {
   "name": "uniparser",
-  "version": "1.0.0",
-  "description": "A universal parser for PDF, DOCX,TXT, MD and HTML files into text",
-  "main": "src/index.js",
+  "version": "1.1.0",
+  "description": "A universal parser for PDF, DOCX, TXT, MD, and HTML files into text",
+  "main": "dist/uniparser.cjs.js",
+  "module": "dist/uniparser.esm.js",
   "type": "module",
   "scripts": {
     "start": "node index.js",
-    "test": "mocha src/test"
+    "test": "mocha src/test",
+    "build": "rollup -c"
   },
   "repository": {
     "type": "git",
@@ -31,7 +33,13 @@
     "pdfjs-dist": "^4.7.76"
   },
   "devDependencies": {
+    "@babel/core": "^7.25.8",
+    "@babel/preset-env": "^7.25.8",
+    "@rollup/plugin-babel": "^6.0.4",
+    "@rollup/plugin-commonjs": "^28.0.1",
+    "@rollup/plugin-node-resolve": "^15.3.0",
     "chai": "^5.1.1",
-    "mocha": "^10.7.3"
+    "mocha": "^10.7.3",
+    "rollup": "^4.24.0"
   }
 }
