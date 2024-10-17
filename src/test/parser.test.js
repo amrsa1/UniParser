@@ -6,7 +6,7 @@ import {
   parsePDF,
   parseDOCX,
   autoParse,
-} from "../index.js";
+} from "../../dist/uniparser.esm.js";  // Import the CommonJS build
 
 const docxPath = "./src/test/test-data/sample-file.docx";
 const pdfPath = "./src/test/test-data/sample-file.pdf";
@@ -14,8 +14,8 @@ const txtPath = "./src/test/test-data/sample-file.txt";
 const htmlPath = "./src/test/test-data/sample-file.html";
 const markdownPath = "./src/test/test-data/sample-file.md";
 
-describe("File Parsers", () => {
-  it("should autoParse text from a PDF file", async () => {
+describe("File Parsers (CommonJS Build)", () => {
+  it("should autoParse text from a DOCX file", async () => {
     const expectedContent = "AMR SALEM, This is docx";
     const result = await autoParse(docxPath);
 

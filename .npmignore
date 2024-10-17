@@ -1,0 +1,10 @@
+src/
+test/
+*.test.js
+rollup.config.js
+.nyc_output/
+coverage/
+node_modules/
+.git/
+.gitignore
+.npmignore
