@@ -13,6 +13,7 @@
 - 📄 **TXT Parsing**: Handles plain text files with no special formatting.
 - 🌐 **HTML Parsing**: Extracts text from the body of HTML documents.
 - 🎨 **Markdown Parsing**: Converts Markdown files to plain text, stripping out all formatting syntax.
+- 🔄 **Auto-detection**: Automatically detects the file format and parses it using the `autoParse` function.
 
 ---
 
@@ -28,38 +29,67 @@ npm install uniparser
 
 ## 🛠️ **Usage**
 
-After installation, you can easily import UniParser to start working with different file formats:
+### **CommonJS (CJS) Example**
+
+If you’re working in a Node.js environment with CommonJS (CJS), use `require()` to import UniParser:
 
 ```javascript
-const { parsePDF, parseDOCX, parseTXT, parseHTML, parseMarkdown } = require('uniparser');
+const { autoParse, parsePDF, parseDOCX, parseTXT, parseHTML, parseMarkdown } = require('uniparser');
 
-// Parsing a PDF file
+// Example: Automatically detect and parse a file
+(async () => {
+    const parsedText = await autoParse('./path/to/sample-file.pdf');
+    console.log(parsedText);
+})();
+
+// Example: Parse specific file types
 const pdfText = await parsePDF('./path/to/sample-file.pdf');
-console.log(pdfText);
-
-// Parsing a DOCX file
 const docxText = await parseDOCX('./path/to/sample-file.docx');
-console.log(docxText);
+const txtText = parseTXT('./path/to/sample-file.txt');
+const htmlText = parseHTML('./path/to/sample-file.html');
+const markdownText = parseMarkdown('./path/to/sample-file.md');
+```
 
-// Parsing a TXT file
-const txtText = await parseTXT('./path/to/sample-file.txt');
-console.log(txtText);
+### **ES Modules (ESM) Example**
 
-// Parsing an HTML file
-const htmlText = await parseHTML('./path/to/sample-file.html');
-console.log(htmlText);
+If you’re working in an ES Module environment (modern JavaScript), use `import` to load the functions:
 
-// Parsing a Markdown file
-const markdownText = await parseMarkdown('./path/to/sample-file.md');
-console.log(markdownText);
+```javascript
+import { autoParse, parsePDF, parseDOCX, parseTXT, parseHTML, parseMarkdown } from 'uniparser';
+
+// Example: Automatically detect and parse a file
+(async () => {
+    const parsedText = await autoParse('./path/to/sample-file.pdf');
+    console.log(parsedText);
+})();
+
+// Example: Parse specific file types
+const pdfText = await parsePDF('./path/to/sample-file.pdf');
+const docxText = await parseDOCX('./path/to/sample-file.docx');
+const txtText = parseTXT('./path/to/sample-file.txt');
+const htmlText = parseHTML('./path/to/sample-file.html');
+const markdownText = parseMarkdown('./path/to/sample-file.md');
 ```
 
 ### ⚡ **Synchronous Usage (for small files)**
 
-For small files, you can use UniParser synchronously:
+For small files, you can use UniParser synchronously, but this should only be done for very lightweight files.
 
+#### CommonJS (CJS):
 ```javascript
 const { parseTXT, parseMarkdown } = require('uniparser');
+
+// Synchronously read small text files
+const txtContent = parseTXT('./path/to/sample-file.txt');
+console.log(txtContent);
+
+const markdownContent = parseMarkdown('./path/to/sample-file.md');
+console.log(markdownContent);
+```
+
+#### ES Modules (ESM):
+```javascript
+import { parseTXT, parseMarkdown } from 'uniparser';
 
 // Synchronously read small text files
 const txtContent = parseTXT('./path/to/sample-file.txt');
@@ -78,6 +108,7 @@ console.log(markdownContent);
 - 🖋️ **TXT** (`.txt`): Reads plain text from simple text files.
 - 🌐 **HTML** (`.html`): Strips HTML tags and returns the text content.
 - ✍️ **Markdown** (`.md`): Converts Markdown files to plain text, removing all formatting.
+- 🔄 **Auto-detection**: Detects file types automatically via `autoParse` and processes them accordingly.
 
 ---
 
@@ -85,6 +116,7 @@ console.log(markdownContent);
 
 Here's a quick example to get you started with DOCX parsing:
 
+### CommonJS (CJS):
 ```javascript
 const { parseDOCX } = require('uniparser');
 
@@ -93,6 +125,18 @@ const { parseDOCX } = require('uniparser');
     console.log(docxText);
 })();
 ```
+
+### ES Modules (ESM):
+```javascript
+import { parseDOCX } from 'uniparser';
+
+(async () => {
+    const docxText = await parseDOCX('./path/to/sample-file.docx');
+    console.log(docxText);
+})();
+```
+
+---
 
 ## 🔑 **License**
 
@@ -108,4 +152,3 @@ Contributions are welcome! If you'd like to improve UniParser, feel free to fork
 
 💡 **UniParser** makes it easier than ever to extract content from a wide range of file formats—**Try it now and streamline your file processing tasks!** 🌟
 
----
