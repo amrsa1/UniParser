@@ -1,12 +1,5 @@
 import { expect } from "chai";
-import {
-  parseMarkdown,
-  parseHTML,
-  parseTXT,
-  parsePDF,
-  parseDOCX,
-  autoParse,
-} from "../../dist/uniparser.esm.js";  // Import the CommonJS build
+import { autoParse, parseMarkdown, parseHTML, parseTXT, parsePDF, parseDOCX } from '../../dist/index.mjs';
 
 const docxPath = "./src/test/test-data/sample-file.docx";
 const pdfPath = "./src/test/test-data/sample-file.pdf";

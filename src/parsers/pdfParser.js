@@ -1,7 +1,7 @@
 import { getDocument, GlobalWorkerOptions } from 'pdfjs-dist';
 
 if (typeof window === 'undefined') {
-  GlobalWorkerOptions.workerSrc = 'pdfjs-dist/build/pdf.worker.mjs';
+  GlobalWorkerOptions.workerSrc = '../pdf.worker.mjs';  // Set the correct path relative to dist
 }
 
 export async function parsePDF(filePath) {
