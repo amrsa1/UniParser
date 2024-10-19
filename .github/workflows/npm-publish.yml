@@ -36,9 +36,6 @@ jobs:
       - name: Build package
         run: npm run build
 
-      - name: Verify build output
-        run: ls -la dist
-
       - name: Run tests
         run: npm test
 
@@ -64,11 +61,6 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-
 
-      - name: Clear node_modules and package-lock.json
-        run: |
-          rm -rf node_modules
-          rm -f package-lock.json
-
       - name: Install dependencies
         run: npm install
 
@@ -79,8 +71,8 @@ jobs:
             exit 1
           fi
 
-      - name: Verify build output before publishing
-        run: ls -la dist
+      - name: Build package
+        run: npm run build
 
       - name: Publish to npm
         run: npm publish
