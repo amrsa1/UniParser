@@ -23,7 +23,7 @@ jobs:
           rm -f package-lock.json
 
       - name: Install dependencies
-        run: npm ci
+        run: npm i
 
       - name: Build package
         run: npm run build
@@ -51,7 +51,7 @@ jobs:
           rm -f package-lock.json
 
       - name: Install dependencies
-        run: npm ci
+        run: npm i
 
       - name: Check npm version
         run: |
