@@ -36,6 +36,9 @@ jobs:
       - name: Build package
         run: npm run build
 
+      - name: Verify build output
+        run: ls -la dist
+
       - name: Run tests
         run: npm test
 
@@ -75,6 +78,9 @@ jobs:
             echo "Version already exists, skipping publish."
             exit 1
           fi
+
+      - name: Verify build output before publishing
+        run: ls -la dist
 
       - name: Publish to npm
         run: npm publish
