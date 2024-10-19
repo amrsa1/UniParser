@@ -1,6 +1,6 @@
 {
   "name": "uniparser",
-  "version": "1.0.0",
+  "version": "1.3.1",
   "description": "A universal parser for PDF, DOCX, TXT, MD, and HTML files into text",
   "main": "dist/cjs/uniparser.cjs.js",
   "module": "dist/esm/uniparser.esm.js",
